@@ -2,7 +2,7 @@
 
 Bridge matrix and cabal thorugh a common channnel (aka room).
 
-I made this following the simple [https://github.com/matrix-org/matrix-appservice-bridge/blob/HEAD/HOWTO.md](HOWTO.md) tutorial made by the matrix team, this is very experimental.
+I made this following the simple [HOWTO.md](https://github.com/matrix-org/matrix-appservice-bridge/blob/HEAD/HOWTO.md) tutorial made by the matrix team, this is very experimental.
 
 
 ## Setup
@@ -17,6 +17,14 @@ app_service_config_files: ["/path/to/slack/bridge/cabal-registration.yaml"]
 ```
 
 3. Then restart your homeserver. Your application service is now registered.
+
+4. Run the service
+
+```
+node index.js -p 9000
+```
+
+5. You can use pm2 for long-running processes
 
 
 # License
