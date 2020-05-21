@@ -19,6 +19,7 @@ var client = new Client({
 const MATRIX_ROOM_ID = config.matrix.room
 const CABAL_CHANNEL = config.cabal.channel
 console.log(config.cabal.nickname, 'listening on', CABAL_CHANNEL, MATRIX_ROOM_ID)
+const homeserver_shortname = config.matrix.homeserver_url.replace('https://', '')
 
 client.addCabal(config.cabal.key).then(() => {
   console.log(config.cabal.key)
@@ -28,8 +29,7 @@ client.addCabal(config.cabal.key).then(() => {
   details.on('new-message', ({ channel, author, message }) => {
     if (channel !== CABAL_CHANNEL) return
     if (author.name !== config.cabal.nickname) {
-      var homeserver = config.matrix.homeserver_url.replace('https://', '')
-      var intent = bridge.getIntent('@cabal_' + author.name + `:${homeserver}`)
+      var intent = bridge.getIntent('@cabal_' + author.name + `:${homeserver_shortname}`)
       intent.sendText(MATRIX_ROOM_ID, message.value.content.text)
     }
   })
@@ -71,7 +71,7 @@ function setupMatrix () {
             details.publishMessage({
               type: 'chat/text',
               content: {
-                text: `(${username}) ${event.content.body}`,
+                text: `${username.replace(':' + homeserver_shortname, '')}: ${event.content.body}`,
                 channel: CABAL_CHANNEL
               }
             },
