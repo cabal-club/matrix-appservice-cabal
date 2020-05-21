@@ -1,0 +1,9 @@
+dbdir: /etc/cabal/matrix-bot.db
+cabal:
+  channel: matrix
+  nickname: matrix-bot
+  keys: 
+    - faae5f2d154e135b878a57eb221fcddd07130f6475c0cbb2ca66de4dd3fc7203
+matrix: 
+  room: cabal
+  homeserver_url: https://matrix.okdistribute.xyz

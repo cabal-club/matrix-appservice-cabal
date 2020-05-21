@@ -1,0 +1,5 @@
+cabal-registration.yaml
+room-store.db
+node_modules
+user-store.db
+cabals
